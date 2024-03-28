@@ -32,6 +32,48 @@ def get_points(start: int, end: int, n: int, f, mode: str) -> list:
 
         return values_matrix
 
+    elif mode == 'opt_spline':
+
+        values_matrix = [[], []]
+
+        values_matrix[0].append(end)
+        values_matrix[1].append(f(end))
+
+        for i in range(n):
+            x = ((end - start) * cos(((2 * i + 1) * pi) / (2 * (n + 1))) + (end + start)) / 2
+            values_matrix[0].append(x)
+            values_matrix[1].append(f(x))
+
+        values_matrix[0].append(start)
+        values_matrix[1].append(f(start))
+
+        values_matrix[0] = list(reversed(values_matrix[0]))
+        values_matrix[1] = list(reversed(values_matrix[1]))
+
+        return values_matrix
+
+    elif mode == 'uni_spline':
+        '''Берем n точек на отрезке [start, end] равномерно'''
+
+        values_matrix = [[], []]
+
+        values_matrix[0].append(start)
+        values_matrix[1].append(f(start))
+
+        step = abs(end - start) / (n + 1)
+        for i in range(n):
+            values_matrix[0].append(start + step)
+            new_value = f(start + step)
+            values_matrix[1].append(new_value)
+            start = start + step
+
+        values_matrix[0].append(end)
+        values_matrix[1].append(f(end))
+
+
+
+        return values_matrix
+
     else:
         '''Обработка ошибки'''
 
@@ -51,4 +93,4 @@ def get_func_diff(start, end, n, f1, f2) -> float:
             max_x = start + step
         start = start + step
 
-    return max_diff, max_x
+    return max_diff
