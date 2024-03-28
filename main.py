@@ -10,8 +10,8 @@ import pylab
 """---Выбор узлов разными способами для нашей функции---"""
 
 # 5 узлов для линейного сплайна (получается 7 всего)
-svalues_matrix_uni_5 = get_points(0, 75, 5, f_m, 'uni_spline')
-svalues_matrix_opt_5 = get_points(0, 75, 5, f_m, 'opt_spline')
+svalues_matrix_uni_5 = get_points(0, 75, 5, f_3, 'uni_spline')
+svalues_matrix_opt_5 = get_points(0, 75, 5, f_3, 'opt_spline')
 
 # 10 узлов для линейного сплайна (получается 12 всего)
 svalues_matrix_uni_10 = get_points(0, 75, 10, f_3, 'uni_spline')
@@ -214,16 +214,16 @@ lspline_opt_5 = ls.LinearSpline(5, svalues_matrix_opt_5)
 lspline_uni_5 = ls.LinearSpline(5, svalues_matrix_uni_5)
 
 ax[0, 0].set_title('5 узлов')
-ax[0, 0].set_ylim([-2, 100])
+ax[0, 0].set_ylim([-2, 15])
 ax[0, 0].plot(x, lspline_uni_5(x))
 ax[0, 0].plot(x, lspline_opt_5(x))
-ax[0, 0].plot(x, f_m(x))
+ax[0, 0].plot(x, f_3(x))
 ax[0, 0].legend(['Равномерно', 'Оптимально', 'Функция'], prop={'size': 7})
 
 
 print(f"---5 узлов---")
-print(f"Максимальное отклонение uni: {get_func_diff(0, 75, 511, f_m, lspline_uni_5):.3f}")
-print(f"Максимальное отклонение opt: {get_func_diff(0, 75, 511, f_m, lspline_opt_5):.3f}")
+print(f"Максимальное отклонение uni: {get_func_diff(0, 75, 511, f_3, lspline_uni_5):.3f}")
+print(f"Максимальное отклонение opt: {get_func_diff(0, 75, 511, f_3, lspline_opt_5):.3f}")
 
 """---10 узлов---"""
 
