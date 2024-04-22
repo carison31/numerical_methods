@@ -1,4 +1,3 @@
-from scipy.linalg import solve
 import numpy as np
 
 
@@ -91,9 +90,3 @@ class QuadraticSpline():
                     else:
                         i += 1
             return Y
-"""
-qs = QuadraticSpline(2, [[0, 1, 4, 6], [-2, 0, 5, 6]])
-
-x = np.array([0, 0.4, 4, 6])
-print(qs(x))
-"""
