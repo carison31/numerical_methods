@@ -85,12 +85,14 @@ def get_func_diff(start, end, n, f1, f2) -> float:
     step = abs(end - start) / (n + 1)
     max_diff = float('-inf')
     max_x = 0
+    func_diff_list = []
 
     for i in range(n):
         new_value = abs(f1(start + step) - f2(start + step))
+        func_diff_list.append(new_value)
         if new_value > max_diff:
             max_diff = new_value
             max_x = start + step
         start = start + step
 
-    return max_diff
+    return max_diff, func_diff_list

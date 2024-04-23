@@ -45,8 +45,8 @@ ax[0, 0].plot(x, f_3(x))
 ax[0, 0].legend(['Равномерно', 'Оптимально', 'Функция'], prop={'size': 7})
 
 print(f"---5 узлов---")
-print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 511, f_3, N_uni_5):.3f}")
-print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 511, f_3, N_opt_5):.3f}")
+print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 500, f_3, N_uni_5)[0]:.3f}")
+print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 500, f_3, N_opt_5)[0]:.3f}")
 
 """---10 узлов---"""
 
@@ -62,8 +62,8 @@ ax[0, 1].plot(x, f_3(x))
 ax[0, 1].legend(['Равномерно', 'Оптимально', 'Функция'], prop={'size': 7})
 
 print(f"---10 узлов---")
-print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 511, f_3, N_uni_10):.3f}")
-print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 511, f_3, N_opt_10):.3f}")
+print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 500, f_3, N_uni_10)[0]:.3f}")
+print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 500, f_3, N_opt_10)[0]:.3f}")
 
 """---25 узлов---"""
 
@@ -79,8 +79,8 @@ ax[1, 0].plot(x, f_3(x))
 ax[1, 0].legend(['Равномерно', 'Оптимально', 'Функция'], prop={'size': 7})
 
 print(f"---25 узлов---")
-print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 511, f_3, N_uni_25):.3f}")
-print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 511, f_3, N_opt_25):.3f}")
+print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 500, f_3, N_uni_25)[0]:.3f}")
+print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 500, f_3, N_opt_25)[0]:.3f}")
 
 """---50 узлов---"""
 
@@ -96,7 +96,44 @@ ax[1, 1].plot(x, f_3(x))
 ax[1, 1].legend(['Равномерно', 'Оптимально', 'Функция'], prop={'size': 7})
 
 print(f"---50 узлов---")
-print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 511, f_3, N_uni_50):.3f}")
-print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 511, f_3, N_opt_50):.3f}")
+print(f"Максимальное отклонение uni: {get_func_diff(0, 4, 500, f_3, N_uni_50)[0]:.3f}")
+print(f"Максимальное отклонение opt: {get_func_diff(0, 4, 500, f_3, N_opt_50)[0]:.3f}")
+
+plt.show()
+
+'''---Графики погрешностей---'''
+
+fig, ax = plt.subplots(2, 2)
+plt.subplots_adjust(wspace=0.3, hspace=0.3)
+
+x = np.linspace(0, 4, 500)
+
+"""---5 узлов---"""
+
+ax[0, 0].set_title('5 узлов')
+ax[0, 0].plot(x, get_func_diff(0, 4, 500, f_3, N_uni_5)[1])
+ax[0, 0].plot(x, get_func_diff(0, 4, 500, f_3, N_opt_5)[1])
+ax[0, 0].legend(['Равномерно', 'Оптимально'], prop={'size': 7})
+
+"""---10 узлов---"""
+
+ax[0, 1].set_title('10 узлов')
+ax[0, 1].plot(x, get_func_diff(0, 4, 500, f_3, N_uni_10)[1])
+ax[0, 1].plot(x, get_func_diff(0, 4, 500, f_3, N_opt_10)[1])
+ax[0, 1].legend(['Равномерно', 'Оптимально'], prop={'size': 7})
+
+"""---25 узлов---"""
+
+ax[1, 0].set_title('25 узлов')
+ax[1, 0].plot(x, get_func_diff(0, 4, 500, f_3, N_uni_25)[1])
+ax[1, 0].plot(x, get_func_diff(0, 4, 500, f_3, N_opt_25)[1])
+ax[1, 0].legend(['Равномерно', 'Оптимально'], prop={'size': 7})
+
+"""---50 узлов---"""
+
+ax[1, 1].set_title('50 узлов')
+ax[1, 1].plot(x, get_func_diff(0, 4, 500, f_3, N_uni_50)[1])
+ax[1, 1].plot(x, get_func_diff(0, 4, 500, f_3, N_opt_50)[1])
+ax[1, 1].legend(['Равномерно', 'Оптимально'], prop={'size': 7})
 
 plt.show()
